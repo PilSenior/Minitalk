@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: htekdemi <htekdemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/09 22:45:21 by htekdemi          #+#    #+#             */
+/*   Updated: 2025/03/09 22:45:21 by htekdemi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include <signal.h>
 # include <unistd.h>
 
@@ -39,7 +51,9 @@ int main(void)
     pid_t server_id;
 
     server_id = getpid();
+	write(1, "\x1b[32m Pid: \x1b[0m" ,15);
     ft_writepid(server_id);
+	write(1, "\n", 1);
 	signal(SIGUSR1, signal_adder);
 	signal(SIGUSR2, signal_adder);
 	while (1)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   client.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: htekdemi <htekdemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/09 22:45:16 by htekdemi          #+#    #+#             */
+/*   Updated: 2025/03/09 22:45:16 by htekdemi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include <signal.h>
 # include <unistd.h>
 
@@ -52,10 +64,21 @@ static void	send_signal(pid_t id, char *message)
 int	main(int argc, char *argv[])
 {
 	pid_t	server_id;
+	int i;
 
 	if (argc == 3)
 	{
+		i = 0;
 		server_id = ft_atoi(argv[1]);
+		while(argv[1][i] != '\0')
+		{
+			if(!(argv[1][i] >= '0' && argv[1][i] <= '9') || server_id <= 0)
+			{
+				write(1, "CHECK THE PİD NUMBER", 20);
+				return(0);
+			}
+			i++;
+		}
 		send_signal(server_id, argv[2]);
 	}
 	else
